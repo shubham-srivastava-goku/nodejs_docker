@@ -1,6 +1,6 @@
-FROM node:12
+FROM node:12-alpine
 WORKDIR /share_ride/server
-COPY package.json /share_ride/server
-RUN npm install
-COPY . /share_ride/server
-CMD ["npm", "start"]
+COPY package.json package-lock.json ./
+RUN npm install --production
+COPY . .
+CMD npm start
