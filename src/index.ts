@@ -1,5 +1,6 @@
 import express from 'express';
 import http from 'http';
+import bodyParser from 'body-parser';
 
 process.on('uncaughtException', (error) => {
   console.log('Uncaught Exception ', error);
@@ -7,7 +8,15 @@ process.on('uncaughtException', (error) => {
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
 app.get('/', (req, res) => {
+  console.log('API triggered!!');
   res.send('Server check');
   res.end();
 });
