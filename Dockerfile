@@ -1,5 +1,5 @@
 FROM node:12-alpine
-WORKDIR /share_ride/server
+WORKDIR /app/server
 COPY package.json package-lock.json ./
 RUN npm install --production
 COPY . .

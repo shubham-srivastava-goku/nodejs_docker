@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
+import router from './routes/main-route';
 
 process.on('uncaughtException', (error) => {
   console.log('Uncaught Exception ', error);
@@ -15,11 +16,9 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
-  console.log('API triggered!!');
-  res.send('Server check');
-  res.end();
-});
+app.use(express.static('./pages'));
+app.use(express.static('./public'));
+app.use('/', router);
 
 const startServer = (): void => {
   console.log('process.env.PORT = ', process.env.PORT);
