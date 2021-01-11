@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import router from './routes/main-route';
 
 process.on('uncaughtException', (error) => {
-  console.log('Uncaught Exception ', error);
+  console.log('Uncaught Exception = ', error);
 });
 
 const app = express();

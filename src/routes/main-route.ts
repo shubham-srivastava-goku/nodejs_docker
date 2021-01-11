@@ -28,10 +28,9 @@ routes.post('/create', async (req, res) => {
   if (existsSync(finalFilePath)) {
     res.redirect('/exists.html');
   } else {
-    // await renameSync(tempFilePath, finalFilePath);
     await copyFileSync(tempFilePath, finalFilePath);
     await unlinkSync(tempFilePath);
-    res.redirect('/');
+    res.redirect('/feedback.html');
   }
 });
 export = routes;
