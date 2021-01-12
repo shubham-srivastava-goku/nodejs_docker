@@ -1,5 +1,7 @@
 # nodejs_docker
 
+To create tsconfig.json run npx tsc --init --rootDir src --outDir build --esModuleInterop --resolveJsonModule --lib es6 --module commonjs --allowJs true --noImplicitAny true
+
 Build docker image: docker build -t node-docker-typescript .
 
 Run docker image: docker run -it -p 8080:80 --env PORT=80 --name node-typescript-container node-docker-typescript
