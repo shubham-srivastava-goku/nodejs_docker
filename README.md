@@ -2,7 +2,10 @@
 
 To create tsconfig.json run npx tsc --init --rootDir src --outDir build --esModuleInterop --resolveJsonModule --lib es6 --module commonjs --allowJs true --noImplicitAny true
 
-Docker is a layered based architecture. Every line in a docker file is treated as an layer. Each layer is cached and if we are building the image again, it'll check if there are ant 
+Docker is a layered based architecture. Every line in a Dockerfile is treated as an layer. Each layer is cached and if we are building the image again, it'll check if there are any updates there.
+If there are no updates on the command, it'll use the cached layer and if there are update, it will create a new layer. All the other layer after the changed one will all be rebuilt.
+
+That is the reason we `copy package.json and package-lock.json` and install the package. We do not add packages frequently and we only use to change business logics.
 
 
 **Build docker image:** `docker build -t node-docker-typescript .`
