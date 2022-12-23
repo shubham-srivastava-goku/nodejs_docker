@@ -5,18 +5,34 @@ To create tsconfig.json run npx tsc --init --rootDir src --outDir build --esModu
 Docker is a layered based architecture. Every line in a Dockerfile is treated as an layer. Each layer is cached and if we are building the image again, it'll check if there are any updates there.
 If there are no updates on the command, it'll use the cached layer and if there are update, it will create a new layer. All the other layer after the changed one will all be rebuilt.
 
-That is the reason we `copy package.json and package-lock.json` and install the package. We do not add packages frequently and we only use to change business logics.
-
+This is the reason why we `copy package.json` and `package-lock.json` and install the package before copying the complete folder. We do not add packages frequently and we only use to change business logics.
 
 **Build docker image:** `docker build -t node-docker-typescript .`
+- `-t` is to give specific image tag. If we will not provide it, docker will generate a random one.
 
 **Run docker image:** `docker run -it -p 8080:80 --env PORT=80 --name node-typescript-container node-docker-typescript`
+- `-it` is for interactive mode.
+- `-p` is used to publish the port. 8080 on local system to 80 on docker container.
+- `--env` option to pass environment variables used by the server / program.
+- `--rm` flag with docker run to remove the container automatically after it exists [For development environment].
+- `--name` option to create named tag for container.
 
-Use `--rm` flag with docker run to remove the container automatically after it exists [For development environment]
+**List all containers:** `docker ps -a`
+- `-a` will show the stopped containers with running containers. Without `-a`, it'll only show running containers.
 
-Use `--env` option to pass environment variables used by the server / program.
+**List all images:** docker images -a
+- `-a` is same as above
 
-Use `--name` option to create named tag for container
+**Stop container:** `docker stop <container_name> or <container_id>.`
+
+**Start container:** `docker start <container_name> or <container_id>.`
+- Add `-a` to run the container in attached mode again.
+
+**Attach the already running container:** `docker attach <container_name> or <container_id>`.
+
+**Remove container:** `docker rm <container_name> or <container_id>`
+
+**See logs:** `docker logs -f <container_name> or <container_id>`
 
 **Add volume to persist data:**
 

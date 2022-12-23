@@ -11,7 +11,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/exists', (req, res) => {
-  const filePath = path.join(__dirname, 'pages', 'exists.html');
+  const filePath = path.join(__dirname, '..', '..', 'pages', 'exists.html');
   res.sendFile(filePath);
 });
 
