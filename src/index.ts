@@ -15,6 +15,7 @@ app.use(express.urlencoded({
 
 app.use(express.static('./pages'));
 app.use(express.static('./public'));
+app.use(express.static('./feedback'));
 app.use('/', router);
 
 const startServer = (): void => {

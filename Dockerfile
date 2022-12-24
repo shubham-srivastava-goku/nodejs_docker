@@ -1,7 +1,7 @@
 FROM node:18.12-slim
 WORKDIR /app/server
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 # --production with npm install for release build
 COPY . .
 ARG DEFAULT_PORT=80

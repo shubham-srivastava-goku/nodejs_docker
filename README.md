@@ -8,7 +8,7 @@ If there are no updates on the command, it'll use the cached layer and if there 
 This is the reason why we `copy package.json` and `package-lock.json` and install the package before copying the complete folder. We do not add packages frequently and we only use to change business logics.
 
 **Build docker image:** `docker build -t node-docker-typescript .`
-- `-t` is to give specific image tag. If we will not provide it, docker will generate a random one.
+- `-t node-docker-typescript:v1` is to give specific image tag. If we will not provide it, docker will generate a random one.
 
 **Run docker image:** `docker run -it -p 8080:80 --env PORT=80 --name node-typescript-container node-docker-typescript`
 - `-it` is for interactive mode.
@@ -30,9 +30,33 @@ This is the reason why we `copy package.json` and `package-lock.json` and instal
 
 **Attach the already running container:** `docker attach <container_name> or <container_id>`.
 
+**See logs:** `docker logs -f <container_name> or <container_id>`
+
+**See info of an image:** `docker image inspect <image_id>`
+
 **Remove container:** `docker rm <container_name> or <container_id>`
 
-**See logs:** `docker logs -f <container_name> or <container_id>`
+**Rename images:** `docker tag old_tag:version new_tag:version`
+
+**Remove images:** `docker rmi <image_name> or <image_id>`
+
+**Remove all unused images:** `docker image prune`
+
+**Copy file to container:** `docker cp /location/of/file/in/system <container_id>:/location/to/copy`
+
+**Copy file from container:** `docker cp <container_id>:/location/of/file /location/to/copy/in/system`
+
+**Publish an image:** `docker push HOST:image_name`
+
+<sub>**NOTE:** Docker image name should be same as docker_id/repo_name which you gave on docker hub</sub>
+
+**Pull an image:** `docker pull HOST:image_name`
+
+### Volumes
+A container can only persist data until it is not deleted. A container has it's own read/write layer. Images are read only. To overcome this, volumes are introduced.
+
+1. **Volume:**
+2. **Bind mount:**
 
 **Add volume to persist data:**
 
