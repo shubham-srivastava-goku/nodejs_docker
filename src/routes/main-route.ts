@@ -21,6 +21,8 @@ routes.post('/create', async (req, res) => {
 
   const adjTitle: string = title.toLowerCase();
 
+  // This will take volume path that we will be crating.
+  console.log('__dirname = ', __dirname);
   const tempFilePath: string = path.join(__dirname, '..', '..', 'temp', adjTitle + '.txt');
   const finalFilePath: string = path.join(__dirname, '..', '..', 'feedback', adjTitle + '.txt');
 
